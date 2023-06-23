@@ -1,6 +1,7 @@
 ﻿using DayOne.API.Entities;
 using DayOne.API.Services;
 using DayOne.API.Validations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace DayOne.API.Controllers
 {
     [ApiController]
     [Route("Ingredients")]
+    
     public class IngredientsController : ControllerBase
     {
         private ILogger<IngredientsController> _logger;
@@ -21,6 +23,7 @@ namespace DayOne.API.Controllers
 
         }
         [HttpGet]
+        [Authorize(Roles = "Admin,Guest")]
         public async Task<ActionResult> Get()
         {
 

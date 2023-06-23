@@ -1,32 +1,36 @@
 using DayOne.API.Context;
+using DayOne.API.Extensions;
+using DayOne.API.Model;
+using DayOne.API.Repository;
 using DayOne.API.Services;
 using DayOne.API.Validations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
-builder.Services.AddControllers();
+
 builder.Services.AddDbContext<CateringContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
+
+builder.Services.AddAuthorizationService();
 builder.Services.AddScoped<IIngredientService,IngredientService>();
 builder.Services.AddScoped<IRecepieService, RecepieService>();
+builder.Services.AddScoped<IAuthenticadtionRepositorty, AuthenticationRepository>();
 builder.Services.AddScoped<IngredientValidator>();
+builder.Services.AddControllers();
 var app = builder.Build();
 
-
-// Configure the HTTP request pipeline.
-//app.Use(async (context, next) =>
-//{
-//    context.Response.ContentType = "application/json";
-//    await context.Response.WriteAsync("HelLO World");
-//    await next();
-//});
-
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
@@ -34,8 +38,3 @@ app.UseEndpoints(endpoints =>
 });
 
 app.Run();
-
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
