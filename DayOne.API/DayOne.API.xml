@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DayOne.API</name>
+    </assembly>
+    <members>
+        <member name="M:DayOne.API.Controllers.AuthController.Register(DayOne.API.Model.RegisterUserDto)">
+            <summary>
+            Registers the user to the database
+            </summary>
+            <param name="userDto">Provide the lsit of the fields for user dto</param>
+            <returns>200 ok if it succeeds</returns>
+        </member>
+        <member name="P:DayOne.API.Model.RegisterUserDto.FirstName">
+            <summary>
+            First Name of the user
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DayOne.API.Controllers
+namespace DayOne.API.Controllers.VersionTwo
 {
     [ApiController]
     [Route("/v{version:apiVersion}/Ingredients")]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Authorize]
     public class IngredientsController : ControllerBase
     {

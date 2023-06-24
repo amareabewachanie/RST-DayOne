@@ -10,7 +10,7 @@ namespace DayOne.API.Extensions
 {
     public static class AuthenticationServiceExtension
     {
-        public static void AddAuthorizationService(this IServiceCollection services)
+        public static void AddAuthorizationService(this IServiceCollection services,IConfiguration configuration)
         {
              services.AddIdentity<User, IdentityRole>(option => {
                 option.Password.RequireDigit = true;
@@ -28,9 +28,9 @@ namespace DayOne.API.Extensions
             {
                 option.TokenValidationParameters = new TokenValidationParameters
                 {
-                    //ValidIssuer = builder["Jwt:Issuer"],
-                    //ValidAudience = builder["Jwt:Audience"],
-                    //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder["Jwt:Key"])),
+                    ValidIssuer = configuration["Jwt:Issuer"],
+                    ValidAudience = configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"])),
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,

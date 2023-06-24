@@ -8,5 +8,9 @@ namespace DayOne.API.Repository
         Task<IdentityResult> RegisterUserAsync(RegisterUserDto dto);
         Task<bool> ValidateUserAsync(Login login);
         Task<string> CreateTokenAsync();
+        Task<bool> AddRoleAsync(string Name);
+        Task<bool> AssignRoleAsync(UserRolesDto userRolesDto);
+        Task<List<RoleDto>> GetRolesAsync();
+
     }
 }

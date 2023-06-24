@@ -6,6 +6,7 @@ namespace DayOne.API.Model
     {
         public string FirstName { get;set; }    
         public string LastName { get;set; }
+        public DateTime DateOfBirth { get;set; }
         public User(string firstName,string lastName)
         {
             FirstName = firstName;
